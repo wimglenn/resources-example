@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 __author__ = "Wim Glenn"
-__version__ = "0.1"
+__version__ = "0.2"
 
 
 import importlib
@@ -12,7 +12,7 @@ import sys
 def main():
     print("Python version:", sys.version)
     print("-" * 80)
-    for i in [1, 2, 3, 4]:
+    for i in 1, 2, 3, 4, 5:
         modname = "myapp.example{}".format(i)
         try:
             mod = importlib.import_module(modname)
