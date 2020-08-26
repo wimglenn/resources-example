@@ -1,14 +1,9 @@
-"""Loading resources using importlib.resources APIs.
-https://importlib-resources.readthedocs.io/en/latest/"""
+"""Loading resources using stdlib importlib.resources APIs (Python 3.7+)
+https://docs.python.org/3/library/importlib.html#module-importlib.resources"""
 from __future__ import print_function
 
-try:
-    from importlib.resources import read_binary
-    from importlib.resources import read_text
-except ImportError:
-    # Python 2.x backport
-    from importlib_resources import read_binary
-    from importlib_resources import read_text
+from importlib.resources import read_binary
+from importlib.resources import read_text
 
 
 def func():
