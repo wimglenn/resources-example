@@ -8,6 +8,32 @@ To build this distribution, create a venv with setuptools, wheel, and pep517 ins
 
 The distributions (an sdist .tar.gz and a bdist .whl) will be written to ./dist/ subdirectory.
 
-To test it out, install a distribution and run the console script ``resources-example``.
+To test it out, install the distribution and run the console script ``resources-example``.
 
-Accessing resources should work on Python 2 / Python 3, Linux, macOS, Windows... and all the approaches except for ``example1.py`` should still work when the package ``myapp`` has been compressed into a .zip
+For creating an executable zip, you can use stdlib `zipapp <https://docs.python.org/3/library/zipapp.html>`_ utility (Python 3.5+):
+
+.. code-block:: bash
+
+   python3 -m zipapp --compress /path/to/resources-example --main="myapp:main" --output=myapp.zip
+
+And now you can run the zip directly with the interpreter (any Python version):
+
+.. code-block:: bash
+
+   python myapp.zip
+
+Here's a compatibility summary of the five approaches shown:
+
++-------------+---------------------+------------+--------------------+--------------------+-------------------+
+| Module      | Description         | In stdlib? | Works on Python 2? | Works on Python 3? | Works in zipfile? |
++=============+=====================+============+====================+====================+===================+
+| example1.py | os.path.join        |     yes    |         yes        |         yes        |         no        |
++-------------+---------------------+------------+--------------------+--------------------+-------------------+
+| example2.py | pkgutil             |     yes    |         yes        |         yes        |        yes        |
++-------------+---------------------+------------+--------------------+--------------------+-------------------+
+| example3.py | pkg_resources       |     no     |         yes        |         yes        |        yes        |
++-------------+---------------------+------------+--------------------+--------------------+-------------------+
+| example4.py | importlib.resources |     yes    |         no         |         yes        |        yes        |
++-------------+---------------------+------------+--------------------+--------------------+-------------------+
+| example5.py | importlib_resources |     no     |         yes        |         yes        |        yes        |
++-------------+---------------------+------------+--------------------+--------------------+-------------------+

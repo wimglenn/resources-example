@@ -1,17 +1,13 @@
 """Loading resources by traversing relative paths.
 The naive approach. Doesn't work if loading from a zipfile."""
-from __future__ import print_function
-
-try:
-    from pathlib import Path
-except ImportError:
-    # Python 2.x backport
-    from pathlib2 import Path
+import os
 
 
 def func():
-    resource_path = Path(__file__).parent / "data_subdir"
-    data = resource_path.joinpath("binfile.dat").read_bytes()
-    print("data", repr(data))
-    text = resource_path.joinpath("textfile.txt").read_text()
-    print("text", repr(text))
+    here = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(here, "data_subdir", "binfile.dat"), "rb") as f:
+        data = f.read()
+    with open(os.path.join(here, "data_subdir", "textfile.txt"), "rt") as f:
+        text = f.read()
+    print("data: " + repr(data))
+    print("text: " + text)
