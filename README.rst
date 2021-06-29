@@ -22,7 +22,7 @@ Here's a compatibility summary of the five approaches demonstrated:
 | example5.py | importlib_resources |     no     |      yes      |      yes      |        yes        |       yes       |
 +-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
 
-* This could be considered `an anti-pattern <https://mail.python.org/pipermail/python-3000/2007-April/006793.html>`_
+\* "Run as script" means executing the submodule directly, e.g. ``python myapp/example2.py``. Note that Guido considers this `an anti-pattern <https://mail.python.org/pipermail/python-3000/2007-April/006793.html>`_
 
 If you are interested in creating an executable zip from source, you can use stdlib `zipapp <https://docs.python.org/3/library/zipapp.html>`_ utility (Python 3.5+):
 
