@@ -1,8 +1,8 @@
-This project shows how to package data files within a Python distribution, and has some example code for reading the data files. To build this distribution, create a venv with setuptools, wheel, and pep517 installed, then execute the latter as a module:
+This project shows how to package data files within a Python distribution, and has some example code for reading the data files. To build this distribution, create a venv with build_ installed and then execute
 
 .. code-block:: bash
 
-   python -m pep517.build .
+   python -m build
 
 The distributions (an sdist .tar.gz and a bdist .whl) will be written to ./dist/ subdirectory. To test it out, install the distribution and run the console script ``resources-example``.
 
@@ -35,3 +35,5 @@ And now you can run the zip directly with the interpreter (any Python version):
 .. code-block:: bash
 
    python myapp.zip
+
+.. _build: https://pypi.org/project/build/
