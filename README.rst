@@ -17,10 +17,10 @@ Here's a compatibility summary of the five approaches demonstrated:
 +-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
 | example3.py | pkg_resources         |     no     |      yes      |  deprecated   |        yes        |       yes       |
 +-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| example4.py | importlib.resources   | deprecated |       no      |   yes (3.7+)  |        yes        |       yes       |
+| example4.py | importlib.resources.  | deprecated |       no      |   yes (3.7+)  |        yes        |       yes       |
 |             | read_binary/read_text |            |               |               |                   |                 |
 +-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| example5.py | importlib.resources   | yes (3.9+) |      yes      |      yes      |        yes        |       yes       |
+| example5.py | importlib.resources.  | yes (3.9+) |      yes      |      yes      |        yes        |       yes       |
 |             | files                 |            |               |               |                   |                 |
 +-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
 
