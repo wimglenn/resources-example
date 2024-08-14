@@ -1,10 +1,6 @@
 """An example project demonstrating various ways to access data files in Python package"""
 from __future__ import print_function
 
-__author__ = "Wim Glenn"
-__version__ = "0.2"
-
-
 import importlib
 import sys
 

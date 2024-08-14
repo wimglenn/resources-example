@@ -8,19 +8,21 @@ The distributions (an sdist .tar.gz and a bdist .whl) will be written to ./dist/
 
 Here's a compatibility summary of the five approaches demonstrated:
 
-+-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
-| Module      | Description         | In stdlib? | Works on Py2? | Works on Py3? | Works in zipfile? | Run as script?* |
-+=============+=====================+============+===============+===============+===================+=================+
-| example1.py | os.path.join        |     yes    |      yes      |      yes      |         no        |       yes       |
-+-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
-| example2.py | pkgutil             |     yes    |      yes      |      yes      |        yes        |        no       |
-+-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
-| example3.py | pkg_resources       |     no     |      yes      |      yes      |        yes        |       yes       |
-+-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
-| example4.py | importlib.resources | deprecated |       no      |   yes (3.7+)  |        yes        |       yes       |
-+-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
-| example5.py | importlib_resources | yes (3.9+) |      yes      |      yes      |        yes        |       yes       |
-+-------------+---------------------+------------+---------------+---------------+-------------------+-----------------+
++-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
+| Module      | Description           | In stdlib? | Works on Py2? | Works on Py3? | Works in zipfile? | Run as script?* |
++=============+=======================+============+===============+===============+===================+=================+
+| example1.py | os.path.join          |     yes    |      yes      |      yes      |         no        |       yes       |
++-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
+| example2.py | pkgutil               |     yes    |      yes      |      yes      |        yes        |        no       |
++-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
+| example3.py | pkg_resources         |     no     |      yes      |  deprecated   |        yes        |       yes       |
++-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
+| example4.py | importlib.resources   | deprecated |       no      |   yes (3.7+)  |        yes        |       yes       |
+|             | read_binary/read_text |            |               |               |                   |                 |
++-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
+| example5.py | importlib.resources   | yes (3.9+) |      yes      |      yes      |        yes        |       yes       |
+|             | files                 |            |               |               |                   |                 |
++-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
 
 \* "Run as script" means executing the submodule directly, e.g. ``python myapp/example2.py``. Note that Guido considers this `an anti-pattern <https://mail.python.org/pipermail/python-3000/2007-April/006793.html>`_
 
@@ -30,7 +32,9 @@ If you are interested in creating an executable zip from source, you can use std
 
    python3 -m zipapp --compress /path/to/resources-example --main="myapp:main" --output=myapp.zip
 
-And now you can run the zip directly with the interpreter (any Python version):
+If this command is slow or the .zip is surprisingly large, make sure don't have any stray subdirs in the source path beforehand (e.g. ``.venv``, ``.git``, ``.idea``).
+
+Now you can run the zip directly with the interpreter (any Python version):
 
 .. code-block:: bash
 

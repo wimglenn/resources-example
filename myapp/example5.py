@@ -4,6 +4,10 @@ https://importlib-resources.readthedocs.io/en/latest/
 Note, the PyPI packaging importlib_resources is only required for Python <= 3.8
 In Python 3.9+, the same APIs are available directly in stdlib importlib.resources:
 https://docs.python.org/3/library/importlib.resources.html#importlib.resources.files
+
+Resist the temptation to use importlib.resources.files() without any arguments, because
+omitting the anchor currently will break zipapp packaging.
+https://github.com/python/cpython/issues/121735
 """
 import importlib_resources
 
