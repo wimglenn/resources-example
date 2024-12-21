@@ -8,23 +8,21 @@ The distributions (an sdist .tar.gz and a bdist .whl) will be written to ./dist/
 
 Here's a compatibility summary of the five approaches demonstrated:
 
-+-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| Module      | Description           | In stdlib? | Works on Py2? | Works on Py3? | Works in zipfile? | Run as script?* |
-+=============+=======================+============+===============+===============+===================+=================+
-| example1.py | os.path.join          |     yes    |      yes      |      yes      |         no        |       yes       |
-+-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| example2.py | pkgutil               |     yes    |      yes      |      yes      |        yes        |        no       |
-+-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| example3.py | pkg_resources         |     no     |      yes      |  deprecated   |        yes        |       yes       |
-+-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| example4.py | importlib.resources.  | deprecated |       no      |   yes (3.7+)  |        yes        |       yes       |
-|             | read_binary/read_text |            |               |               |                   |                 |
-+-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-| example5.py | importlib.resources.  | yes (3.9+) |      yes      |      yes      |        yes        |       yes       |
-|             | files                 |            |               |               |                   |                 |
-+-------------+-----------------------+------------+---------------+---------------+-------------------+-----------------+
-
-\* "Run as script" means executing the submodule directly, e.g. ``python myapp/example2.py``. Note that Guido considers this `an anti-pattern <https://mail.python.org/pipermail/python-3000/2007-April/006793.html>`_
++-------------+-----------------------+------------+---------------+---------------+-------------------+---------------------+
+| Module      | Description           | In stdlib? | Works on Py2? | Works on Py3? | Works in zipfile? | Run as script? [*]_ |
++=============+=======================+============+===============+===============+===================+=====================+
+| example1.py | os.path.join          |     yes    |      yes      |      yes      |         no        |       yes           |
++-------------+-----------------------+------------+---------------+---------------+-------------------+---------------------+
+| example2.py | pkgutil               |     yes    |      yes      |      yes      |        yes        |        no           |
++-------------+-----------------------+------------+---------------+---------------+-------------------+---------------------+
+| example3.py | pkg_resources         |     no     |      yes      |  deprecated   |        yes        |       yes           |
++-------------+-----------------------+------------+---------------+---------------+-------------------+---------------------+
+| example4.py | importlib.resources.  | deprecated |       no      |   yes (3.7+)  |        yes        |       yes           |
+|             | read_binary/read_text |            |               |               |                   |                     |
++-------------+-----------------------+------------+---------------+---------------+-------------------+---------------------+
+| example5.py | importlib.resources.  | yes (3.9+) |      yes [*]_ |      yes      |        yes        |       yes           |
+|             | files                 |            |               |               |                   |                     |
++-------------+-----------------------+------------+---------------+---------------+-------------------+---------------------+
 
 If you are interested in creating an executable zip from source, you can use stdlib `zipapp <https://docs.python.org/3/library/zipapp.html>`_ utility (Python 3.5+):
 
@@ -41,3 +39,6 @@ Now you can run the zip directly with the interpreter (any Python version):
    python myapp.zip
 
 .. _build: https://pypi.org/project/build/
+
+.. [*] "Run as script" means executing the submodule directly, e.g. ``python myapp/example2.py``. Note that Guido considers this `an anti-pattern <https://mail.python.org/pipermail/python-3000/2007-April/006793.html>`_.
+.. [*] The same APIs are available in 2.7 by using an `importlib_resources <https://pypi.org/project/importlib-resources/3.3.1/>`_ backport.
